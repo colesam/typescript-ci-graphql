@@ -1,0 +1,26 @@
+version: "3.4"
+services:
+  webserver:
+    # mounting our API source directory
+    image: node:10.10.0-alpine
+    command: sh -c "cd /var/www/backend && npm ci --no-progress && npm start"
+    volumes:
+      - ./backend:/var/www/backend:Z
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    environment:
+      DB_HOST: postgres:5432
+      DB_USER: postgres
+      DB_PASS: test123
+  postgres:
+    image: postgres:9.6.13-alpine
+    environment:
+      POSTGRES_DB: ts_server
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test123
+    volumes:
+      - ./db_data:/var/lib/postgresql/data:Z
+    ports:
+      - 5432:5432
