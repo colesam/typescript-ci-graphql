@@ -3,9 +3,10 @@ services:
   webserver:
     # mounting our API source directory
     image: node:10.10.0-alpine
-    command: sh -c "cd /var/www/backend && npm ci --no-progress && npm start"
+    command: sh -c "cd /var/www/backend && npm install --no-progress && npm start"
     volumes:
       - ./backend:/var/www/backend:Z
+      - /opt/typescript-frontend:/var/www/backend/node_modules/
     depends_on:
       - postgres
     ports:
