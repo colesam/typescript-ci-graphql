@@ -2,20 +2,22 @@ version: "3.4"
 services:
   webserver:
     # mounting our API source directory
-    image: node:10.10.0-alpine
-    command: sh -c "cd /var/www/backend && npm install --no-progress && npm start"
+    build: .
+    command: npm start
     volumes:
       - ./backend:/var/www/backend:Z
-      - /opt/typescript-frontend:/var/www/backend/node_modules/
+      - /tmp/typescript-frontend:/var/www/backend/node_modules/:Z
     depends_on:
-      - postgres
+      - database
     ports:
       - 8080:8080
     environment:
-      DB_HOST: postgres:5432
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_NAME: ts_server
       DB_USER: postgres
       DB_PASS: test123
-  postgres:
+  database:
     image: postgres:9.6.13-alpine
     environment:
       POSTGRES_DB: ts_server
