@@ -2,7 +2,7 @@ version: "3.4"
 services:
   webserver:
     # mounting our API source directory
-    image: node:10.10.0-alpine
+    image: node:11.15.0
     command: sh -c "npm install && npm run start:watch"
     volumes:
       - ./backend:/var/www/backend:Z
