@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import * as uuid from "uuid/v4";
 
-@Entity()
+@Entity("users")
 export class User extends BaseEntity {
   @PrimaryColumn("uuid")
   public id: string;

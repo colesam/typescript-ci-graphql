@@ -1,43 +1,42 @@
-// tslint:disable
 // graphql typescript definitions
 
-declare namespace GQL {
-  interface IGraphQLResponseRoot {
-    data?: IQuery | IMutation;
-    errors?: Array<IGraphQLResponseError>;
+/* eslint-disable */
+export namespace GQL {
+  interface GraphQLResponseRoot {
+    data?: Query | Mutation;
+    errors?: GraphQLResponseError[];
   }
 
-  interface IGraphQLResponseError {
+  interface GraphQLResponseError {
     /** Required for all errors */
     message: string;
-    locations?: Array<IGraphQLResponseErrorLocation>;
+    locations?: GraphQLResponseErrorLocation[];
     /** 7.2.2 says 'GraphQL servers may provide additional entries to error' */
     [propName: string]: any;
   }
 
-  interface IGraphQLResponseErrorLocation {
+  interface GraphQLResponseErrorLocation {
     line: number;
     column: number;
   }
 
-  interface IQuery {
-    __typename: 'Query';
+  interface Query {
+    __typename: "Query";
     hello: string;
   }
 
-  interface IHelloOnQueryArguments {
+  interface HelloOnQueryArguments {
     name?: string | null;
   }
 
-  interface IMutation {
-    __typename: 'Mutation';
+  interface Mutation {
+    __typename: "Mutation";
     register: boolean | null;
   }
 
-  interface IRegisterOnMutationArguments {
+  interface RegisterOnMutationArguments {
     email: string;
     password: string;
   }
 }
-
-// tslint:enable
+/* eslint-enable */

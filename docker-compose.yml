@@ -2,11 +2,12 @@ version: "3.4"
 services:
   webserver:
     # mounting our API source directory
-    build: .
-    command: npm start
+    image: node:10.10.0-alpine
+    command: sh -c "npm install && npm run start:watch"
     volumes:
       - ./backend:/var/www/backend:Z
       - /tmp/typescript-frontend:/var/www/backend/node_modules/:Z
+    working_dir: /var/www/backend
     depends_on:
       - database
     ports:
