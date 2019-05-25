@@ -1,1 +1,1 @@
-docker-compose run webserver && docker-compose down
+docker-compose run webserver npm run test:integration
