@@ -2,8 +2,9 @@ version: "3.4"
 services:
   webserver:
     # mounting our API source directory
+    container_name: webserver_integration_tests
     image: node:11.15.0
-    command: sh -c "npm install && npm run test"
+    command: sh -c "npm install && npm test"
     volumes:
       - ./backend:/var/www/backend:Z
       - /tmp/typescript-frontend:/var/www/backend/node_modules/:Z

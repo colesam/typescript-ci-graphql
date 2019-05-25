@@ -1,4 +1,4 @@
-import { appFactory, App } from "../index";
+import { appFactory, App } from "../App";
 import { User } from "../entity/User";
 import { request } from "graphql-request";
 
