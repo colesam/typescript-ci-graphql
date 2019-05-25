@@ -24,7 +24,7 @@ export class App {
   }
 }
 
-export async function appFactory(): Promise<App> {
+export async function createApp(): Promise<App> {
   const typeDefs = importSchema(path.resolve("./src/schema.graphql"));
 
   let connection: Connection;

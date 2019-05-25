@@ -1,4 +1,4 @@
-import { appFactory, App } from "../App";
+import { createApp, App } from "../App";
 import { User } from "../entity/User";
 import { request } from "graphql-request";
 
@@ -15,7 +15,7 @@ let app: App;
 let response: any;
 let users: User[];
 beforeAll(async () => {
-  app = await appFactory();
+  app = await createApp();
   await app.start(8080);
   response = await request("http://localhost:8080", mutation);
   users = await User.find({ where: { email } });
