@@ -13,10 +13,12 @@ mutation {
 
 let app: App;
 let response: any;
+let users: User[];
 beforeAll(async () => {
   app = await appFactory();
   await app.start(8080);
   response = await request("http://localhost:8080", mutation);
+  users = await User.find({ where: { email } });
 });
 
 afterAll(async () => {
@@ -28,14 +30,12 @@ test("returns the correct response ", async () => {
 });
 
 test("inserts the user into the database", async () => {
-  const users = await User.find({ where: { email } });
   const user = users[0];
   expect(users.length).toBe(1);
   expect(user.email).toEqual(email);
 });
 
 test("does not store the password in plaintext", async () => {
-  const users = await User.find({ where: { email } });
   const user = users[0];
   expect(user.password.length).toBeGreaterThan(0);
   expect(user.password).not.toEqual(password);

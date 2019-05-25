@@ -7,8 +7,8 @@
     "start:watch": "nodemon",
     "test": "jest",
     "test:integration": "npm run migrate:up && npm test && npm run migrate:down",
-    "migrate:up": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run",
-    "migrate:down": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert",
+    "migrate:up": "ts-node ./node_modules/.bin/typeorm migration:run",
+    "migrate:down": "ts-node ./node_modules/.bin/typeorm migration:revert",
     "lint": "eslint --ext ts ./src",
     "gen-schema": "gql2ts src/schema.graphql -o src/types/graphql.d.ts"
   },

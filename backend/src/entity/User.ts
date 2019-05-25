@@ -21,6 +21,5 @@ export class User extends BaseEntity {
   @BeforeInsert()
   public addId() {
     this.id = uuid();
-    console.log(`***** Adding ID ${this.id} *****`);
   }
 }
